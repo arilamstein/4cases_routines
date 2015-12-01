@@ -32,3 +32,16 @@ SequenceObjectSTS <- function(data, startdate, stopdate, exclude = c()){
   
   (arrange(data, id))
 }
+
+SequenceObjectTSE  <- function(data, startdate, stopdate, exclude = c()){
+  
+  # call parent SequencObject class somehow
+  
+  data$end <- data$time
+  data <- data[with(data, order(time)), ]
+  data$time <- match( data$time , unique( data$time ) )
+  data$end <- match( data$end , unique( data$end ) )
+  slmax <- max(data$time)
+  
+  (arrange(data, id))
+}
